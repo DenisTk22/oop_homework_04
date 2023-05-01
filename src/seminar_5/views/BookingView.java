@@ -9,11 +9,20 @@ import java.util.Date;
 
 public class BookingView implements View {
 
-    private ViewObserver observer;
+    private ViewObserver observer; // наблюдатель
+
+    /**
+     * Установить наблюдателя, отслеживающего действия пользователя
+     * @param observer наблюдатель
+     */
     public void setObserver(ViewObserver observer){
         this.observer = observer;
     }
 
+    /**
+     * Отобразить список всех стликов
+     * @param tables стлик
+     */
     public void showTables(Collection<Table> tables){
         for (Table table:tables){
             System.out.println(table);
@@ -22,24 +31,43 @@ public class BookingView implements View {
     }
 
     /**
-     * Действия клиента (пользователь нажал на кнопку),
+     * Действия клиента (пользователь нажал на кнопку бронирования),
+     * бронирование столика
      * @param reservationDate дата бронирования
      * @param tableNo номер столика
      * @param name имя клиента
      */
     public void reservationTable(Date reservationDate, int tableNo, String name){
+        observer.onReservationTable(reservationDate, tableNo, name);
 
     }
 
+    //обратиться к обсерверу для обработки события
+
+    /**
+     * TODO: Доработать метод в дз.
+     * Действие клиента (пользователь нажал на кнопку),
+     * изменение бронированя столика
+     * @param oldReservation старый номер брони
+     * @param reservationDate новая дата бронирования
+     * @param tableNo номер столика
+     * @param name имя клиента
+     */
     public void changeReservationTable(int oldReservation, Date reservationDate, int tableNo, String name){
-
+//метод доблжен обратиться к обсерверу, который будет имплементировать этот метод
+        // в рамках BookingPresenter
     }
+
+    /**
+     * Отобразить результат резервирования стлика
+     * @param reservationId номер брони
+     */
     public void showReservationTableStatus(int reservationId){
         if(reservationId > 0){
-            System.out.printf("Столик зарезервирован\nНомер брони%s", reservationId);
+            System.out.printf("Столик успешно забронирован.\nНомер брони: #%d\n", reservationId);
         }
         else {
-            System.out.println("Не забронирован");
+            System.out.println("Ошибка бронирования.\nПовторите попытку позже.");
         }
     }
 }

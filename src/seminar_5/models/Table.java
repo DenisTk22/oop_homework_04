@@ -15,6 +15,10 @@ public class Table {
         return no;
     }
 
+    public Collection<Reservation> getReservations() {
+        return reservations;
+    }
+
     {
         no = ++counter;
     }
