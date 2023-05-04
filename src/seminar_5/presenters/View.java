@@ -10,13 +10,13 @@ public interface View {
      * Отобразить список всех стликов
      * @param tables столики
      */
-    void showTables(Collection<Table> tables);
+    void showTables(Collection<Table> tables); // протянули метод showTables()
 
     /**
      * Установить наблюдателя, отслеживающего действия пользователя
      * @param observer наблюдатель
      */
-    void setObserver(ViewObserver observer);
+    void setObserver(ViewObserver observer); // протянули метод setObserver()
 
     /**
      * Отобразить результат резервирования стлика

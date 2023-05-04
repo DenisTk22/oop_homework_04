@@ -6,6 +6,8 @@ import java.util.Collection;
 import java.util.Date;
 
 public interface Model {
-    Collection<Table> loadTables();
+    Collection<Table> loadTables(); // протянули метод loadTables()
     int reservationTable(Date reservationDate, int tableNo, String name);
+
+    int changeReservationTable(int oldReservation, Date reservationDate, int tableNo, String name);
 }

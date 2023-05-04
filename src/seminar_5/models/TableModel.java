@@ -1,22 +1,24 @@
 package seminar_5.models;
 
+import com.sun.source.util.SourcePositions;
 import seminar_5.presenters.Model;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
+
 public class TableModel implements Model { // модель для манипуляции со столиком
 
-    private Collection<Table> tables;
-
+    private Collection<Table> tables; // коллекция столиков
+    //private Collection<Reservation> reservations;
     /**
      * Получение списка всех столиков
      * @return столики
      */
     public Collection<Table> loadTables(){
         if (tables == null){
-            tables = new ArrayList<>();
+            tables = new ArrayList<>(); // переменная tables указывает на список столиков
 
             tables.add(new Table());
             tables.add(new Table());
@@ -24,7 +26,7 @@ public class TableModel implements Model { // модель для манипул
             tables.add(new Table());
             tables.add(new Table());
         }
-        return tables;
+        return tables; // возвращаем коллекцию столиков
     }
 
     /**
@@ -47,6 +49,17 @@ public class TableModel implements Model { // модель для манипул
     }
 //разработать в рамках дз:, воспользоваться методом reservationTable
     public int changeReservationTable(int oldReservation, Date reservationDate, int tableNo, String name){
-        return -1;
+        System.out.printf("Старая бронь #",oldReservation);
+        for (Table table: tables) {
+            for (Reservation reservation : table.getReservations()) {
+                //System.out.println(reservation.getId());
+                if (reservation.getId() == oldReservation) {
+                    table.getReservations().remove(reservation.getId()); // table.getReservations().remove(reservation);
+                }
+                System.out.println(reservation.getId());
+            }
+        }
+
+        return reservationTable(reservationDate, tableNo, name);
     }
 }

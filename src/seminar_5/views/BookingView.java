@@ -9,22 +9,22 @@ import java.util.Date;
 
 public class BookingView implements View {
 
-    private ViewObserver observer; // наблюдатель
+    private ViewObserver observer; // ссылка на наблюдатель
 
     /**
      * Установить наблюдателя, отслеживающего действия пользователя
      * @param observer наблюдатель
      */
     public void setObserver(ViewObserver observer){
-        this.observer = observer;
+        this.observer = observer; // ссылка на наблюдателя
     }
 
     /**
      * Отобразить список всех стликов
      * @param tables стлик
      */
-    public void showTables(Collection<Table> tables){
-        for (Table table:tables){
+    public void showTables(Collection<Table> tables){ // передача столиков
+        for (Table table: tables){
             System.out.println(table);
         }
 
@@ -42,8 +42,6 @@ public class BookingView implements View {
 
     }
 
-    //обратиться к обсерверу для обработки события
-
     /**
      * TODO: Доработать метод в дз.
      * Действие клиента (пользователь нажал на кнопку),
@@ -54,12 +52,13 @@ public class BookingView implements View {
      * @param name имя клиента
      */
     public void changeReservationTable(int oldReservation, Date reservationDate, int tableNo, String name){
+        observer.onChangeReservationTable(oldReservation, reservationDate, tableNo, name);
 //метод доблжен обратиться к обсерверу, который будет имплементировать этот метод
         // в рамках BookingPresenter
     }
 
     /**
-     * Отобразить результат резервирования стлика
+     * Отобразить результат резервирования столика
      * @param reservationId номер брони
      */
     public void showReservationTableStatus(int reservationId){
